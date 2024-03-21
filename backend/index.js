@@ -1,5 +1,5 @@
 import express from "express";
-import { binarySearchWordList } from "./binarySearch.js";
+import { binarySearchWordList } from "./utilities.js";
 
 const app = express();
 const port = 5000;
