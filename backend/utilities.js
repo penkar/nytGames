@@ -3,20 +3,17 @@ import fs from "fs";
 const path = "./node_modules/word-list/words.txt";
 const dictionaryWordList = fs.readFileSync(path, "utf8").split("\n");
 
+/* word - string */
 export const binarySearchWordList = (word) => {
   let start = 0;
   let end = dictionaryWordList.length;
   let middle = Math.floor((start + end) / 2);
   let current = null;
 
-  // const possibleLetters = composePossibleLetters();
-  // const centerLetter = possibleLetters[Math.floor(Math.random() * 7)];
-  // const words = getPossibleWords(possibleLetters, centerLetter);
-
   while (
     start !== end &&
     dictionaryWordList[middle] !== word &&
-    current !== dictionaryWordList[middle]
+    dictionaryWordList[middle] !== current
   ) {
     current = dictionaryWordList[middle];
     if (checkPosition(word, middle)) {
@@ -30,6 +27,10 @@ export const binarySearchWordList = (word) => {
   return dictionaryWordList[middle] === word;
 };
 
+/*
+  word - string
+  index - number
+*/
 const checkPosition = (word, index) => {
   // Return true if the word is to the left of the index, and false if it is to the right.
   const current = dictionaryWordList[index];
@@ -81,6 +82,10 @@ export const composePossibleLetters = () => {
   return [...possibleConstanants, ...possibleVowels];
 };
 
+/*
+  possibleLetters - string[] 
+  centerLetter - string
+*/
 export const getPossibleWords = (possibleLetters, centerLetter) => {
   const letters = new RegExp(`^[${possibleLetters.join("")}]+$`);
   const letter = new RegExp(`[${centerLetter}]`);
