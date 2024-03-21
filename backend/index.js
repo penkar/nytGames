@@ -1,5 +1,9 @@
 import express from "express";
-import { binarySearchWordList } from "./utilities.js";
+import {
+  binarySearchWordList,
+  composePossibleLetters,
+  getPossibleWords,
+} from "./utilities.js";
 
 const app = express();
 const port = 5000;
@@ -8,7 +12,7 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-app.get("/g/:guess", (req, res) => {
+app.get("/spellingbee/:guess", (req, res) => {
   const guess = req.params.guess;
   const correctSpelling = binarySearchWordList(guess);
   console.log({ guess, correctSpelling });
@@ -16,9 +20,17 @@ app.get("/g/:guess", (req, res) => {
   res.send({ guess, correctSpelling });
 });
 
-app.post("/guess", (req, res) => {
+app.post("/spellingbee/guess", (req, res) => {
   const guess = req.body.guess;
   const correctSpelling = binarySearchWordList(guess);
 
   res.send({ guess, correctSpelling });
+});
+
+app.get("/spellingbee_meta", (req, res) => {
+  const possibleLetters = composePossibleLetters();
+  const centerLetter = possibleLetters[Math.floor(Math.random() * 7)];
+  const words = getPossibleWords(possibleLetters, centerLetter);
+
+  res.send({ words, centerLetter, possibleLetters });
 });
