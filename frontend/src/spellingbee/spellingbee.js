@@ -1,34 +1,37 @@
-import classnames from "classnames";
+import classNames from "classnames";
+import { Chain } from "./chain";
 import { useSpellingBeeContext } from "../context/useSpellingBee";
 
-const Node = ({ filled }) => (
-  <div className={classnames("node", { filled })}></div>
+const LetterTile = ({ central, letter = "", onClick }) => (
+  <div className={classNames("hexagon", { central })} onClick={onClick}>
+    {letter}
+  </div>
 );
 
-const Chain = ({ totalScore, currentScore }) => {
-  const place = Math.floor((currentScore / totalScore) * 9);
-  return (
-    <header className="nodes">
-      <hr className="connector"></hr>
-      <Node filled={place > 0 || true} />
-      <Node filled={place > 1 || true} />
-      <Node filled={place > 2} />
-      <Node filled={place > 3} />
-      <Node filled={place > 4} />
-      <Node filled={place > 5} />
-      <Node filled={place > 6} />
-      <Node filled={place > 7} />
-      <Node filled={place > 8} />
-    </header>
-  );
-};
-
 export const SpellingBee = () => {
-  const { actions, totalScore, currentScore } = useSpellingBeeContext();
+  const { actions, totalScore, currentScore, letters, centralLetter } =
+    useSpellingBeeContext();
+  console.log({ letters, centralLetter });
+  const addLetter = () => {};
+
   return (
     <div className="splling_bee">
       <Chain totalScore={totalScore} currentScore={currentScore} />
-      <section></section>
+      <section>
+        <div className="row">
+          <LetterTile letter={letters[0]} onClick={addLetter} />
+          <LetterTile letter={letters[1]} onClick={addLetter} />
+        </div>
+        <div className="row">
+          <LetterTile letter={letters[2]} onClick={addLetter} />
+          <LetterTile letter={centralLetter} onClick={addLetter} central />
+          <LetterTile letter={letters[3]} onClick={addLetter} />
+        </div>
+        <div className="row">
+          <LetterTile letter={letters[4]} onClick={addLetter} />
+          <LetterTile letter={letters[5]} onClick={addLetter} />
+        </div>
+      </section>
       <footer>
         <button>Delete</button>
         <button>Shuffle</button>

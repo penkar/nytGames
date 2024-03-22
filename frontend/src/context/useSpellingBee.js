@@ -1,27 +1,25 @@
 import React from "react";
-// frontend/utilities/serverURL.js
-// frontend/src/context/useSpellingBee.js
 import { serverURL } from "../utilities";
 
 const SpellingBeeContextProvider = React.createContext({
   actions: {},
-  centralLetter: null,
+  centralLetter: "",
   letters: [],
   possibleWords: [],
   guessedWords: [],
   currentScore: 0,
-  totalScore: 0,
+  totalScore: 100,
 });
 
 const initialState = {
   actions: {},
   loading: false,
   loaded: false,
-  totalScore: 0,
+  totalScore: 100,
   currentScore: 0,
-  letters: [],
+  letters: ["a", "b", "c", "d", "e", "f", "g"],
   possibleWords: [],
-  centralLetter: null,
+  centralLetter: "a",
 };
 
 function boardReducer(state, action) {
@@ -54,7 +52,7 @@ function SpellingBeeContext({ children }) {
     loaded,
     totalScore,
     currentScore,
-    letters,
+    letters: letters.filter((letter) => letter !== centralLetter),
     possibleWords,
     centralLetter,
   };
