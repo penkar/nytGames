@@ -18,9 +18,17 @@ const initialState = {
   letters: ["a", "b", "c", "d", "e", "f", "g"],
   loaded: false,
   loading: false,
-  possibleWords: [],
+  possibleWords: ["abcd", "cdef", "aaa", "bbb"],
   totalScore: 100,
 };
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
 
 function boardReducer(state, action) {
   switch (action.type) {
@@ -41,6 +49,10 @@ function boardReducer(state, action) {
       const { guess } = action;
       const guessedWords = [...state.guessedWords, guess];
       return { ...state, guessedWords, currentGuess: "" };
+    }
+    case "SHUFFLE_LETTERS": {
+      const newLetters = shuffleArray([...state.letters]);
+      return { ...state, letters: newLetters };
     }
     default: {
       return state;
@@ -74,6 +86,7 @@ function SpellingBeeContext({ children }) {
     dispatch,
   ] = React.useReducer(boardReducer, initialState);
 
+  const shuffle = () => dispatch({ type: "SHUFFLE_LETTERS" });
   const updateGuess = (value) =>
     dispatch({
       type: "UPDATE_GUESS",
@@ -83,7 +96,7 @@ function SpellingBeeContext({ children }) {
   const backspaceGuess = () => dispatch({ type: "BACKSPACE_GUESS" });
   const makeGuess = () => {
     if (
-      !guessedWords.contains(currentGuess) &&
+      !guessedWords.includes(currentGuess) &&
       possibleWords.includes(currentGuess)
     ) {
       dispatch({ type: "SUCCESSFUL_GUESS", guess: currentGuess });
@@ -92,10 +105,16 @@ function SpellingBeeContext({ children }) {
     }
   };
 
-  const actions = { backspaceGuess, clearGuess, updateGuess, makeGuess };
+  const actions = {
+    shuffle,
+    backspaceGuess,
+    clearGuess,
+    updateGuess,
+    makeGuess,
+  };
 
-  const totalScore = getScore(guessedWords.join(""), centralLetter) || 0;
-  const currentScore = getScore(possibleWords.join(""), centralLetter) || 0;
+  const totalScore = getScore(possibleWords.join(""), centralLetter) || 0;
+  const currentScore = getScore(guessedWords.join(""), centralLetter) || 0;
 
   const exposedState = {
     actions,

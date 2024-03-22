@@ -1,16 +1,13 @@
-import { Header } from "./header";
 import { Body } from "./body";
+import { Header } from "./header";
+import { Footer } from "./footer";
 
 export const SpellingBee = () => {
   return (
     <div className="splling_bee">
       <Header />
       <Body />
-      <footer>
-        <button>Delete</button>
-        <button>Shuffle</button>
-        <button>Enter</button>
-      </footer>
+      <Footer />
     </div>
   );
 };
