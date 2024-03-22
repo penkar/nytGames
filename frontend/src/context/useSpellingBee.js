@@ -10,16 +10,14 @@ const SpellingBeeContextProvider = React.createContext({
 });
 
 const initialState = {
-  actions: {},
   centralLetter: "a",
   currentGuess: "",
-  currentScore: 0,
+  error: null,
   guessedWords: [],
   letters: ["a", "b", "c", "d", "e", "f", "g"],
   loaded: false,
   loading: false,
   possibleWords: ["abcd", "cdef", "aaa", "bbb"],
-  totalScore: 100,
 };
 
 function shuffleArray(array) {
@@ -32,6 +30,37 @@ function shuffleArray(array) {
 
 function boardReducer(state, action) {
   switch (action.type) {
+    case "START_FETCH": {
+      return {
+        ...state,
+        centralLetter: "",
+        currentGuess: "",
+        error: null,
+        guessedWords: [],
+        letters: [],
+        loaded: false,
+        loading: true,
+        possibleWords: [],
+      };
+    }
+    case "COMPLETE_FETCH": {
+      return {
+        ...state,
+        loaded: true,
+        loading: false,
+        letters: action.letters,
+        centralLetter: action.centralLetter,
+        possibleWords: action.possibleWords,
+      };
+    }
+    case "FETCH_ERROR": {
+      return {
+        ...state,
+        error: null,
+        loaded: true,
+        loading: false,
+      };
+    }
     case "BACKSPACE_GUESS": {
       let newGuess = state.currentGuess.substr(
         0,
@@ -86,6 +115,34 @@ function SpellingBeeContext({ children }) {
     dispatch,
   ] = React.useReducer(boardReducer, initialState);
 
+  const fetchSpellingBeeData = () => {
+    dispatch({ type: "START_FETCH" });
+    fetch(``)
+      .then((res) => res.json())
+      .then((data) => {
+        try {
+          dispatch({
+            type: "COMPLETE_FETCH",
+            letters: data.letters,
+            centralLetter: data.centralLetter,
+            possibleWords: data.possibleWords,
+          });
+        } catch (error) {
+          console.error(error);
+          dispatch({
+            type: "FETCH_ERROR",
+            error: "An error was encountered",
+          });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        dispatch({
+          type: "FETCH_ERROR",
+          error: "An error was encountered",
+        });
+      });
+  };
   const shuffle = () => dispatch({ type: "SHUFFLE_LETTERS" });
   const updateGuess = (value) =>
     dispatch({
@@ -106,11 +163,12 @@ function SpellingBeeContext({ children }) {
   };
 
   const actions = {
-    shuffle,
     backspaceGuess,
     clearGuess,
-    updateGuess,
+    fetchSpellingBeeData,
     makeGuess,
+    shuffle,
+    updateGuess,
   };
 
   const totalScore = getScore(possibleWords.join(""), centralLetter) || 0;
