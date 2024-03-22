@@ -5,25 +5,25 @@ const Node = ({ filled }) => (
 );
 
 const statuses = [
-  "Genius",
-  "Amazing",
-  "Great",
-  "Solid",
-  "Good",
-  "Moving Up",
-  "Good Start",
   "Beginner",
+  "Good Start",
+  "Good",
+  "Solid",
+  "Great",
+  "Moving Up",
+  "Amazing",
+  "Genius",
 ];
 
-export const Chain = ({ totalScore, currentScore }) => {
+export const Header = ({ totalScore, currentScore }) => {
   const place = Math.floor((currentScore / totalScore) * 9);
   const status = statuses[place];
   return (
     <header>
       <div className="nodes">
         <hr className="connector" />
-        <Node filled={place > 0 || true} />
-        <Node filled={place > 1 || true} />
+        <Node filled={place > 0} />
+        <Node filled={place > 1} />
         <Node filled={place > 2} />
         <Node filled={place > 3} />
         <Node filled={place > 4} />
@@ -32,7 +32,9 @@ export const Chain = ({ totalScore, currentScore }) => {
         <Node filled={place > 7} />
         <Node filled={place > 8} />
       </div>
-      <div className="status">{status}</div>
+      <div className="status">
+        {status}: {currentScore} / {totalScore}
+      </div>
     </header>
   );
 };

@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { Chain } from "./chain";
+import { Header } from "./header";
 import { useSpellingBeeContext } from "../context/useSpellingBee";
 
 const LetterTile = ({ central, letter = "", onClick }) => (
@@ -11,13 +11,12 @@ const LetterTile = ({ central, letter = "", onClick }) => (
 export const SpellingBee = () => {
   const { actions, totalScore, currentScore, letters, centralLetter } =
     useSpellingBeeContext();
-  console.log({ letters, centralLetter });
   const addLetter = () => {};
 
   return (
     <div className="splling_bee">
-      <Chain totalScore={totalScore} currentScore={currentScore} />
-      <section>
+      <Header totalScore={totalScore} currentScore={currentScore} />
+      <section className="body">
         <div className="row">
           <LetterTile letter={letters[0]} onClick={addLetter} />
           <LetterTile letter={letters[1]} onClick={addLetter} />
