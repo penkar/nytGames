@@ -4,13 +4,27 @@ body {
   --gold: #f7da21;
 }
 
-.splling_bee {
+.spelling_bee {
   display: flex;
   flex-direction: column;
 }
 
+.spelling_bee header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+.spelling_bee footer {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+
 /* Header Components */
-header .nodes {
+.spelling_bee header .nodes {
   align-items: center;
   border-radius: 4px;
   border: solid 1px var(--light-gray);
@@ -22,7 +36,7 @@ header .nodes {
   width: 300px;
 }
 
-header .nodes .connector {
+.spelling_bee header .nodes .connector {
   border: 0px;
   border-bottom: solid 1px var(--light-gray);
   border-style: solid;
@@ -33,12 +47,12 @@ header .nodes .connector {
   z-index: -1;
 }
 
-header .nodes .node {
+.spelling_bee header .nodes .node {
   padding-left: 8px;
   padding-right: 8px;
 }
 
-header .nodes .node:after {
+.spelling_bee header .nodes .node:after {
   background-color: var(--light-gray);
   border-radius: 50%;
   content: "";
@@ -50,25 +64,16 @@ header .nodes .node:after {
   width: 16px;
 }
 
-header .nodes .node.filled:after {
+.spelling_bee header .nodes .node.filled:after {
   background-color: var(--gold);
 }
 
-header .nodes .node:first-child {
-}
-
-header .nodes .node:last-child {
-}
-
-header .nodes .node.filled + header .nodes .node {
-}
-
-header .status {
+.spelling_bee header .status {
   text-align: center;
 }
 
 /* Body Section */
-section.body .hexagon {
+.spelling_bee section.body .hexagon {
   align-items: center;
   background: var(--light-gray);
   display: flex;
@@ -89,16 +94,17 @@ section.body .hexagon {
   );
 }
 
-section.body .hexagon.central {
+.spelling_bee section.body .hexagon.central {
   background-color: var(--gold);
 }
 
-section.body .row {
+.spelling_bee section.body .row {
   text-align: center;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-section.body .row + .row {
+
+.spelling_bee section.body .row + .row {
   margin-top: -20px;
 }
