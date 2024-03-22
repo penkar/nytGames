@@ -9,8 +9,8 @@ const App = () => {
   const [currentGame, setCurrentGame] = React.useState("spelling_bee");
   return (
     <SpellingBeeContext>
-      <Menu currentGame={currentGame} setCurrentGame={setCurrentGame} />
       {currentGame === "spelling_bee" && <SpellingBee />}
+      <Menu currentGame={currentGame} setCurrentGame={setCurrentGame} />
     </SpellingBeeContext>
   );
 };

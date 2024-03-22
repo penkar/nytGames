@@ -1,11 +1,16 @@
 import React from "react";
-import classNames from "classnames";
+import cn from "classnames";
 
 import "./app.css";
 
 export const Menu = ({ currentGame, setCurrentGame }) => {
   const [slideOutOpen, setSlideOutOpen] = React.useState(false);
+
   const handleClick = () => setSlideOutOpen(!slideOutOpen);
+  const handleGameChange = (gameName) => {
+    setCurrentGame(gameName);
+    setSlideOutOpen(false);
+  };
 
   React.useEffect(() => {
     const root = document.getElementById("root");
@@ -17,7 +22,22 @@ export const Menu = ({ currentGame, setCurrentGame }) => {
       <button className="hamburger" onClick={handleClick}>
         ☰
       </button>
-      <div className={classNames("slide-out", { open: slideOutOpen })}></div>
+      <div className={cn("slide-out", { open: slideOutOpen })}>
+        <ul>
+          <li
+            className={cn({ current: "spelling_bee" === currentGame })}
+            onClick={() => handleGameChange("spelling_bee")}
+          >
+            Spelling Bee
+          </li>
+          <li
+            className={cn({ current: "sudoku" === currentGame })}
+            onClick={() => handleGameChange("sudoku")}
+          >
+            Sudoku
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };

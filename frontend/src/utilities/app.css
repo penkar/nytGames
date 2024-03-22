@@ -14,3 +14,28 @@
   font-size: 2rem;
   padding: 0px 16px;
 }
+
+#menu .slide-out {
+  background: var(--light-gray);
+  bottom: 0px;
+  position: fixed;
+  right: 100vw;
+  top: 60px;
+  width: 100vw;
+  transition: right 1s;
+}
+
+#menu .slide-out.open {
+  right: 0px;
+}
+
+#menu .slide-out li {
+  font-size: 2em;
+  padding: 8px;
+  cursor: pointer;
+}
+
+#menu .slide-out li.current {
+  color: var(--dark-gold);
+  cursor: none;
+}

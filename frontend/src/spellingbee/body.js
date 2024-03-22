@@ -1,11 +1,11 @@
 import React from "react";
-import classNames from "classnames";
+import cn from "classnames";
 import { useSpellingBeeContext } from "../context/useSpellingBee";
 
 const LetterTile = ({ central, letter = "", onClick }) => {
   const handleClick = () => onClick(letter);
   return (
-    <div className={classNames("hexagon", { central })} onClick={handleClick}>
+    <div className={cn("hexagon", { central })} onClick={handleClick}>
       {letter}
     </div>
   );
