@@ -121,6 +121,7 @@ function SpellingBeeContext({ children }) {
     centralLetter,
     currentGuess,
     currentScore,
+    guessedWords,
     letters: letters.filter((letter) => letter !== centralLetter),
     loaded,
     loading,

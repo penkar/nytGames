@@ -111,10 +111,16 @@
   letter-spacing: 0.5px;
   line-height: 1.25;
   margin: auto;
-  padding: 50px 8px;
+  padding: 24px 8px;
   text-align: center;
   text-rendering: optimizeLegibility;
   text-transform: uppercase;
+}
+
+.spelling_bee section.body .guess-list {
+  height: calc(100vh - 420px - 156px - 20px);
+  margin: 0px 28px;
+  width: calc(100vw - 56px);
 }
 
 /* Footer Styles */

@@ -12,7 +12,7 @@ const LetterTile = ({ central, letter = "", onClick }) => {
 };
 
 export const Body = () => {
-  const { actions, currentGuess, letters, centralLetter } =
+  const { actions, centralLetter, currentGuess, guessedWords, letters } =
     useSpellingBeeContext();
   const addLetter = (letter) => {
     if (currentGuess.length > 18) {
@@ -41,6 +41,9 @@ export const Body = () => {
       </div>
       <div className="guess" style={{ fontSize }}>
         {currentGuess}
+      </div>
+      <div className="guess-list">
+        <span>Guesses:&nbsp;</span> {guessedWords.join(", ")}
       </div>
     </section>
   );
