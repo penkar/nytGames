@@ -1,4 +1,5 @@
 import classnames from "classnames";
+import { useSpellingBeeContext } from "../context/useSpellingBee";
 
 const Node = ({ filled }) => (
   <div className={classnames("node", { filled })}></div>
@@ -15,7 +16,8 @@ const statuses = [
   "Genius",
 ];
 
-export const Header = ({ totalScore, currentScore }) => {
+export const Header = () => {
+  const { totalScore, currentScore } = useSpellingBeeContext();
   const place = Math.floor((currentScore / totalScore) * 9);
   const status = statuses[place];
   return (
