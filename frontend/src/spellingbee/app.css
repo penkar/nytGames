@@ -1,0 +1,157 @@
+/* App */
+body {
+  --light-gray: #dcdcdc;
+  --gold: #f7da21;
+  --white: #fff;
+  --black: #333;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  font-weight: 700;
+}
+
+.spelling_bee {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Components */
+.spelling_bee header {
+  position: fixed;
+  top: 60px;
+  left: 0px;
+  right: 0px;
+}
+
+.spelling_bee header .nodes {
+  align-items: center;
+  border-radius: 4px;
+  border: solid 1px var(--light-gray);
+  display: flex;
+  flex-direction: row;
+  height: 44px;
+  justify-content: center;
+  margin: 16px auto;
+  width: 300px;
+}
+
+.spelling_bee header .nodes .connector {
+  border: 0px;
+  border-bottom: solid 1px var(--light-gray);
+  border-style: solid;
+  height: 0px;
+  margin: 0px;
+  position: absolute;
+  width: 264px;
+  z-index: -1;
+}
+
+.spelling_bee header .nodes .node {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.spelling_bee header .nodes .node:after {
+  background-color: var(--light-gray);
+  border-radius: 50%;
+  content: "";
+  display: block;
+  height: 16px;
+  left: -4.5px;
+  top: -4.5px;
+  transition: background-color 200ms 100ms ease;
+  width: 16px;
+}
+
+.spelling_bee header .nodes .node.filled:after {
+  background-color: var(--gold);
+}
+
+.spelling_bee header .status {
+  text-align: center;
+}
+
+/* Body Section */
+.spelling_bee section {
+  bottom: 120px;
+  display: flex;
+  flex-direction: column-reverse;
+  left: 0;
+  position: fixed;
+  right: 0;
+}
+
+.spelling_bee section.body .hexagon {
+  align-items: center;
+  background: var(--light-gray);
+  display: flex;
+  font-size: 24px;
+  height: 80px;
+  justify-content: center;
+  width: 80px;
+  transition: 0.7s;
+  margin: 2px;
+  text-transform: uppercase;
+  -webkit-clip-path: polygon(
+    50% 0%,
+    100% 25%,
+    100% 75%,
+    50% 100%,
+    0% 75%,
+    0% 25%
+  );
+}
+
+.spelling_bee section.body .hexagon.central {
+  background-color: var(--gold);
+}
+
+.spelling_bee section.body .row {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.spelling_bee section.body .row + .row {
+  margin-bottom: -20px;
+}
+.spelling_bee section.body .guess {
+  font-size: 2em;
+  height: 1.25em;
+  letter-spacing: 0.5px;
+  line-height: 1.25;
+  margin: auto;
+  padding: 50px 8px;
+  text-align: center;
+  text-rendering: optimizeLegibility;
+  text-transform: uppercase;
+}
+
+/* Footer Styles */
+.spelling_bee footer {
+  bottom: 32px;
+  display: flex;
+  justify-content: center;
+  left: 0px;
+  position: fixed;
+  right: 0px;
+}
+
+.spelling_bee footer button {
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 2.5em;
+  border: 1px solid var(--light-gray);
+  color: var(--black);
+  display: flex;
+  font-size: 1em;
+  height: 3em;
+  justify-content: center;
+  letter-spacing: 0.01em;
+  margin: 0 8px;
+  min-width: 5.5em;
+  padding: 15px 0;
+  width: 5.5em;
+}
