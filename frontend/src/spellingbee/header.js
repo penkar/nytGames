@@ -18,7 +18,7 @@ const statuses = [
 
 export const Header = () => {
   const { totalScore, currentScore } = useSpellingBeeContext();
-  const place = Math.floor((currentScore / totalScore) * 9);
+  const place = Math.floor((currentScore / totalScore) * 9) || 0;
   const status = statuses[place];
   return (
     <header>
