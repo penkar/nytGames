@@ -15,17 +15,17 @@ export const Body = () => {
   const { actions, currentGuess, letters, centralLetter } =
     useSpellingBeeContext();
   const addLetter = (letter) => {
-    if (currentGuess.length > 19) {
+    if (currentGuess.length > 18) {
       actions.updateGuess("");
       /* Trigger TOO LONG warning */
     } else {
       actions.updateGuess(currentGuess + letter);
     }
   };
+  const fontSize = `${2 - Math.max(0, currentGuess.length - 15) / 10}em`;
 
   return (
     <section className="body">
-      <div className="guess">{currentGuess}</div>
       <div className="row">
         <LetterTile letter={letters[0]} onClick={addLetter} />
         <LetterTile letter={letters[1]} onClick={addLetter} />
@@ -38,6 +38,9 @@ export const Body = () => {
       <div className="row">
         <LetterTile letter={letters[4]} onClick={addLetter} />
         <LetterTile letter={letters[5]} onClick={addLetter} />
+      </div>
+      <div className="guess" style={{ fontSize: fontSize }}>
+        {currentGuess}
       </div>
     </section>
   );

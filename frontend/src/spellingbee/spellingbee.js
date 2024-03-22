@@ -4,7 +4,7 @@ import { Footer } from "./footer";
 
 export const SpellingBee = () => {
   return (
-    <div className="splling_bee">
+    <div className="spelling_bee">
       <Header />
       <Body />
       <Footer />

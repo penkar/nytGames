@@ -1,7 +1,14 @@
 /* App */
 body {
-  --light-gray: #e6e6e6;
+  --light-gray: #dcdcdc;
   --gold: #f7da21;
+  --white: #fff;
+  --black: #333;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  font-weight: 700;
 }
 
 .spelling_bee {
@@ -9,21 +16,14 @@ body {
   flex-direction: column;
 }
 
+/* Header Components */
 .spelling_bee header {
   position: fixed;
-  top: 0px;
+  top: 60px;
   left: 0px;
   right: 0px;
 }
 
-.spelling_bee footer {
-  position: fixed;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-}
-
-/* Header Components */
 .spelling_bee header .nodes {
   align-items: center;
   border-radius: 4px;
@@ -73,6 +73,15 @@ body {
 }
 
 /* Body Section */
+.spelling_bee section {
+  bottom: 120px;
+  display: flex;
+  flex-direction: column-reverse;
+  left: 0;
+  position: fixed;
+  right: 0;
+}
+
 .spelling_bee section.body .hexagon {
   align-items: center;
   background: var(--light-gray);
@@ -106,5 +115,43 @@ body {
 }
 
 .spelling_bee section.body .row + .row {
-  margin-top: -20px;
+  margin-bottom: -20px;
+}
+.spelling_bee section.body .guess {
+  font-size: 2em;
+  height: 1.25em;
+  letter-spacing: 0.5px;
+  line-height: 1.25;
+  margin: auto;
+  padding: 50px 8px;
+  text-align: center;
+  text-rendering: optimizeLegibility;
+  text-transform: uppercase;
+}
+
+/* Footer Styles */
+.spelling_bee footer {
+  bottom: 32px;
+  display: flex;
+  justify-content: center;
+  left: 0px;
+  position: fixed;
+  right: 0px;
+}
+
+.spelling_bee footer button {
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 2.5em;
+  border: 1px solid var(--light-gray);
+  color: var(--black);
+  display: flex;
+  font-size: 1em;
+  height: 3em;
+  justify-content: center;
+  letter-spacing: 0.01em;
+  margin: 0 8px;
+  min-width: 5.5em;
+  padding: 15px 0;
+  width: 5.5em;
 }
