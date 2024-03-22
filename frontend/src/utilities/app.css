@@ -1,0 +1,16 @@
+#menu {
+  background-color: var(--light-gray);
+  height: 60px;
+  left: 0px;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  display: flex;
+}
+
+#menu .hamburger {
+  background: transparent;
+  border: transparent;
+  font-size: 2rem;
+  padding: 0px 16px;
+}
