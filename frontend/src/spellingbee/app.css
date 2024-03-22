@@ -1,16 +1,4 @@
 /* App */
-body {
-  --light-gray: #dcdcdc;
-  --gold: #f7da21;
-  --white: #fff;
-  --black: #333;
-
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-  font-weight: 700;
-}
-
 .spelling_bee {
   display: flex;
   flex-direction: column;

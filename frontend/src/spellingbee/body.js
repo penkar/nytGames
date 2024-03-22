@@ -39,7 +39,7 @@ export const Body = () => {
         <LetterTile letter={letters[4]} onClick={addLetter} />
         <LetterTile letter={letters[5]} onClick={addLetter} />
       </div>
-      <div className="guess" style={{ fontSize: fontSize }}>
+      <div className="guess" style={{ fontSize }}>
         {currentGuess}
       </div>
     </section>

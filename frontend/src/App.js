@@ -1,14 +1,18 @@
+import React from "react";
 import SpellingBee from "./spellingbee";
+import { Menu } from "./utilities";
 import { SpellingBeeContext } from "./context/useSpellingBee";
 
 import "./App.css";
 
-function App() {
+const App = () => {
+  const [currentGame, setCurrentGame] = React.useState("spelling_bee");
   return (
     <SpellingBeeContext>
-      <SpellingBee />
+      <Menu currentGame={currentGame} setCurrentGame={setCurrentGame} />
+      {currentGame === "spelling_bee" && <SpellingBee />}
     </SpellingBeeContext>
   );
-}
+};
 
 export default App;
