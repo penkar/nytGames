@@ -12,17 +12,20 @@ body {
 /* Header Components */
 header .nodes {
   align-items: center;
+  border-radius: 4px;
+  border: solid 1px var(--light-gray);
   display: flex;
   flex-direction: row;
   height: 44px;
   justify-content: center;
-  width: 100%;
+  margin: 16px auto;
+  width: 300px;
 }
 
 header .nodes .connector {
+  border: 0px;
   border-bottom: solid 1px var(--light-gray);
   border-style: solid;
-  border: 0px;
   height: 0px;
   margin: 0px;
   position: absolute;
@@ -60,16 +63,22 @@ header .nodes .node:last-child {
 header .nodes .node.filled + header .nodes .node {
 }
 
-/* Hexagon */
-.hexagon {
+header .status {
+  text-align: center;
+}
+
+/* Body Section */
+section.body .hexagon {
   align-items: center;
+  background: var(--light-gray);
   display: flex;
   font-size: 24px;
-  box-shadow: 10px 10px 5px #000;
+  height: 80px;
   justify-content: center;
-  width: 100px;
-  height: 100px;
-  background: var(--light-gray);
+  width: 80px;
+  transition: 0.7s;
+  margin: 2px;
+  text-transform: uppercase;
   -webkit-clip-path: polygon(
     50% 0%,
     100% 25%,
@@ -78,17 +87,18 @@ header .nodes .node.filled + header .nodes .node {
     0% 75%,
     0% 25%
   );
-  transition: 0.7s;
-  margin: 2px;
-  text-transform: uppercase;
 }
 
-.row {
+section.body .hexagon.central {
+  background-color: var(--gold);
+}
+
+section.body .row {
   text-align: center;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-.row + .row {
-  margin-top: -28px;
+section.body .row + .row {
+  margin-top: -20px;
 }
