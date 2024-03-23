@@ -1,4 +1,6 @@
 import express from "express";
+import cors from "cors";
+
 import {
   binarySearchWordList,
   composePossibleLetters,
@@ -7,10 +9,7 @@ import {
 
 const app = express();
 const port = 5000;
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+app.use(cors());
 
 app.get("/spellingbee/:guess", (req, res) => {
   const guess = req.params.guess;
@@ -33,4 +32,8 @@ app.get("/spellingbee_meta", (req, res) => {
   const words = getPossibleWords(possibleLetters, centerLetter);
 
   res.send({ words, centerLetter, possibleLetters });
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });

@@ -117,15 +117,15 @@ function SpellingBeeContext({ children }) {
 
   const fetchSpellingBeeData = () => {
     dispatch({ type: "START_FETCH" });
-    fetch(``)
+    fetch(`${serverURL()}/spellingbee_meta`)
       .then((res) => res.json())
       .then((data) => {
         try {
           dispatch({
             type: "COMPLETE_FETCH",
-            letters: data.letters,
-            centralLetter: data.centralLetter,
-            possibleWords: data.possibleWords,
+            letters: data.possibleLetters,
+            centralLetter: data.centerLetter,
+            possibleWords: data.words,
           });
         } catch (error) {
           console.error(error);

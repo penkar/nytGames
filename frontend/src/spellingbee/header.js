@@ -12,12 +12,15 @@ const statuses = [
   "Moving Up",
   "Amazing",
   "Genius",
+  "Master",
+  "Perfect",
 ];
 
 export const Header = () => {
   const { totalScore, currentScore } = useSpellingBeeContext();
-  const place = Math.floor((currentScore / totalScore) * 9) || 0;
+  const place = Math.ceil((currentScore / totalScore) * 8) || 0;
   const status = statuses[place];
+
   return (
     <header>
       <div className="nodes">
@@ -30,7 +33,7 @@ export const Header = () => {
         <Node filled={place > 5} />
         <Node filled={place > 6} />
         <Node filled={place > 7} />
-        <Node filled={place > 8} />
+        <Node filled={totalScore > 0 && totalScore === currentScore} />
       </div>
       <div className="status">
         {status}: {currentScore} / {totalScore}

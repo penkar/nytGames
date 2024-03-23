@@ -24,6 +24,10 @@ export const Body = () => {
   };
   const fontSize = `${2 - Math.max(0, currentGuess.length - 15) / 10}em`;
 
+  React.useEffect(() => {
+    actions.fetchSpellingBeeData();
+  }, []);
+
   return (
     <section className="body">
       <div className="row">
