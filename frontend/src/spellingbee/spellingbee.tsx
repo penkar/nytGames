@@ -1,3 +1,4 @@
+import React from "react";
 import { Body } from "./body";
 import { Header } from "./header";
 import { Footer } from "./footer";

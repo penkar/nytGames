@@ -1,7 +1,10 @@
+import React from "react";
 import cn from "classnames";
-import { useSpellingBeeContext } from "../context/useSpellingBee";
+import { useSpellingBeeContext } from "../context";
 
-const Node = ({ filled }) => <div className={cn("node", { filled })}></div>;
+const Node = ({ filled }: { filled?: boolean }) => (
+  <div className={cn("node", { filled })}></div>
+);
 
 const statuses = [
   "Beginner",

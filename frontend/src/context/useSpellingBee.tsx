@@ -1,13 +1,65 @@
 import React from "react";
 import { serverURL } from "../utilities";
 
-const SpellingBeeContextProvider = React.createContext({
-  actions: {},
-  centralLetter: "",
-  currentGuess: "",
-  letters: [],
-  guessedWords: [],
-});
+interface SpellingBeeContextProviderInterface {
+  actions: {
+    backspaceGuess?: () => void;
+    clearGuess?: () => void;
+    fetchSpellingBeeData?: () => void;
+    makeGuess?: () => void;
+    shuffle?: () => void;
+    updateGuess?: (arg: string) => void;
+  };
+  centralLetter: string;
+  currentGuess: string;
+  letters: string[];
+  guessedWords: string[];
+  totalScore: number;
+  currentScore: number;
+}
+
+interface ReducerStateInterface {
+  centralLetter: string;
+  currentGuess: string;
+  error: null | string;
+  guessedWords: string[];
+  letters: string[];
+  loaded: boolean;
+  loading: boolean;
+  possibleWords: string[];
+}
+
+type Actions =
+  | { type: "START_FETCH" }
+  | {
+      type: "COMPLETE_FETCH";
+      letters: string[];
+      centralLetter: string;
+      possibleWords: string[];
+    }
+  | {
+      type: "FETCH_ERROR";
+      error: string;
+    }
+  | { type: "SHUFFLE_LETTERS" }
+  | {
+      type: "UPDATE_GUESS";
+      value: string;
+    }
+  | { type: "CLEAR_GUESS" }
+  | { type: "BACKSPACE_GUESS" }
+  | { type: "SUCCESSFUL_GUESS"; guess: string };
+
+const SpellingBeeContextProvider =
+  React.createContext<SpellingBeeContextProviderInterface>({
+    actions: {},
+    centralLetter: "",
+    currentGuess: "",
+    letters: [],
+    guessedWords: [],
+    totalScore: 0,
+    currentScore: 0,
+  });
 
 const initialState = {
   centralLetter: "a",
@@ -20,7 +72,7 @@ const initialState = {
   possibleWords: ["abcd", "cdef", "aaa", "bbb"],
 };
 
-function shuffleArray(array) {
+function shuffleArray(array: string[]) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
@@ -28,7 +80,7 @@ function shuffleArray(array) {
   return array;
 }
 
-function boardReducer(state, action) {
+function boardReducer(state: ReducerStateInterface, action: Actions) {
   switch (action.type) {
     case "START_FETCH": {
       return {
@@ -89,7 +141,7 @@ function boardReducer(state, action) {
   }
 }
 
-function getScore(longString, keyLetter) {
+function getScore(longString: string, keyLetter: string) {
   let score = 0;
   for (let i = 0; i < longString.length; i++) {
     if (longString[i] === keyLetter) {
@@ -101,7 +153,11 @@ function getScore(longString, keyLetter) {
   return score;
 }
 
-function SpellingBeeContext({ children }) {
+interface SpellingBeeContextInterface {
+  children: React.ReactNode;
+}
+
+function SpellingBeeContext({ children }: SpellingBeeContextInterface) {
   const [
     {
       centralLetter,
@@ -144,7 +200,7 @@ function SpellingBeeContext({ children }) {
       });
   };
   const shuffle = () => dispatch({ type: "SHUFFLE_LETTERS" });
-  const updateGuess = (value) =>
+  const updateGuess = (value: string) =>
     dispatch({
       type: "UPDATE_GUESS",
       value,
@@ -180,7 +236,7 @@ function SpellingBeeContext({ children }) {
     currentGuess,
     currentScore,
     guessedWords,
-    letters: letters.filter((letter) => letter !== centralLetter),
+    letters: letters.filter((letter: string) => letter !== centralLetter),
     loaded,
     loading,
     totalScore,

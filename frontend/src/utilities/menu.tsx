@@ -3,18 +3,23 @@ import cn from "classnames";
 
 import "./app.css";
 
-export const Menu = ({ currentGame, setCurrentGame }) => {
+interface MenuInterface {
+  currentGame: string;
+  setCurrentGame: (arg: string) => void;
+}
+
+export const Menu = ({ currentGame, setCurrentGame }: MenuInterface) => {
   const [slideOutOpen, setSlideOutOpen] = React.useState(false);
 
   const handleClick = () => setSlideOutOpen(!slideOutOpen);
-  const handleGameChange = (gameName) => {
+  const handleGameChange = (gameName: string) => {
     setCurrentGame(gameName);
     setSlideOutOpen(false);
   };
 
   React.useEffect(() => {
     const root = document.getElementById("root");
-    root.className = currentGame;
+    if (root !== null) root.className = currentGame;
   }, [currentGame]);
 
   return (

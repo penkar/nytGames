@@ -1,8 +1,14 @@
 import React from "react";
 import cn from "classnames";
-import { useSpellingBeeContext } from "../context/useSpellingBee";
+import { useSpellingBeeContext } from "../context";
 
-const LetterTile = ({ central, letter = "", onClick }) => {
+interface LetterTileInterface {
+  central?: boolean;
+  letter: string;
+  onClick: (arg: string) => void;
+}
+
+const LetterTile = ({ central, letter = "", onClick }: LetterTileInterface) => {
   const handleClick = () => onClick(letter);
   return (
     <div className={cn("hexagon", { central })} onClick={handleClick}>
@@ -12,20 +18,25 @@ const LetterTile = ({ central, letter = "", onClick }) => {
 };
 
 export const Body = () => {
-  const { actions, centralLetter, currentGuess, guessedWords, letters } =
-    useSpellingBeeContext();
-  const addLetter = (letter) => {
+  const {
+    actions = {},
+    centralLetter,
+    currentGuess,
+    guessedWords,
+    letters,
+  } = useSpellingBeeContext();
+  const addLetter = (letter: string) => {
     if (currentGuess.length > 18) {
-      actions.updateGuess("");
+      actions?.updateGuess?.("");
       /* Trigger TOO LONG warning */
     } else {
-      actions.updateGuess(currentGuess + letter);
+      actions?.updateGuess?.(currentGuess + letter);
     }
   };
   const fontSize = `${2 - Math.max(0, currentGuess.length - 15) / 10}em`;
 
   React.useEffect(() => {
-    actions.fetchSpellingBeeData();
+    actions?.fetchSpellingBeeData?.();
   }, []);
 
   return (
