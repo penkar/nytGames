@@ -1,17 +1,30 @@
 import React from "react";
 import SpellingBee from "./spellingbee";
+import Wordle from "./wordle";
 import { Menu } from "./utilities";
-import { SpellingBeeContext } from "./context/useSpellingBee";
+import {
+  GuessContextProvider,
+  ModalContextProvider,
+  SpellingBeeContext,
+  StatsContextProvider,
+} from "./context";
 
 import "./App.css";
 
 const App = () => {
   const [currentGame, setCurrentGame] = React.useState("spelling_bee");
   return (
-    <SpellingBeeContext>
-      {currentGame === "spelling_bee" && <SpellingBee />}
-      <Menu currentGame={currentGame} setCurrentGame={setCurrentGame} />
-    </SpellingBeeContext>
+    <GuessContextProvider>
+      <ModalContextProvider>
+        <SpellingBeeContext>
+          <StatsContextProvider>
+            {currentGame === "spelling_bee" && <SpellingBee />}
+            {currentGame === "wordle" && <Wordle />}
+            <Menu currentGame={currentGame} setCurrentGame={setCurrentGame} />
+          </StatsContextProvider>
+        </SpellingBeeContext>
+      </ModalContextProvider>
+    </GuessContextProvider>
   );
 };
 

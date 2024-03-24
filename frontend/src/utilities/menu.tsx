@@ -36,6 +36,12 @@ export const Menu = ({ currentGame, setCurrentGame }: MenuInterface) => {
             Spelling Bee
           </li>
           <li
+            className={cn({ current: "wordle" === currentGame })}
+            onClick={() => handleGameChange("wordle")}
+          >
+            Wordle
+          </li>
+          <li
             className={cn({ current: "sudoku" === currentGame })}
             onClick={() => handleGameChange("sudoku")}
           >
