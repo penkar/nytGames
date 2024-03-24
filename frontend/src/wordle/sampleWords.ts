@@ -2316,7 +2316,7 @@ export const getRandomWord = (): string => {
   return wordList[Math.trunc(Math.random() * count) - 1].toLowerCase();
 };
 
-export const checkRandomWrod = (str: string) => {
+export const checkRandomWord = (str: string) => {
   return wordList.includes(str);
 };
 

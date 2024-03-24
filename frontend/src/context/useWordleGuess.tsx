@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import {
   // getRandomWord,
   getWordBasedOnDate,
-  checkRandomWrod,
+  checkRandomWord,
 } from "../wordle/sampleWords";
 
 type GuessContextType = {
@@ -81,7 +81,7 @@ const GuessContextProvider = ({ children }: { children: ReactNode }) => {
   // Function will test the current guess against the secret.
   const attemptGuess = () => {
     if (guess.length < secret.length) return;
-    if (checkRandomWrod(guess)) {
+    if (checkRandomWord(guess)) {
       const guessAttempt: Guess[] = [];
       const newGuessArray: Guess[][] = [...guessArray];
 
