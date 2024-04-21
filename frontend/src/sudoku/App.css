@@ -1,10 +1,10 @@
-* {
+/* * {
   box-sizing: border-box;
   user-select: none;
   z-index: 2;
-}
+} */
 
-#root {
+#root.sudoku {
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -14,7 +14,7 @@
 }
 
 /* Game Board Styles */
-.board-component {
+.sudoku .board-component {
   display: grid;
   grid-auto-rows: minmax(auto, 39px);
   grid-template-columns: repeat(9, 1fr);
@@ -24,32 +24,32 @@
 }
 
 /* Cell Styles */
-.cell {
+.sudoku .cell {
   border: 1px solid hwb(0deg 0% 100% / 15%);
   position: relative;
 }
-.cell.cell-top {
+.sudoku .cell.cell-top {
   border-top: 1px solid black;
   padding-top: 1px;
 }
-.cell.cell-bottom {
+.sudoku .cell.cell-bottom {
   border-bottom: 1px solid black;
   padding-bottom: 1px;
 }
-.cell.cell-right {
+.sudoku .cell.cell-right {
   border-right: 1px solid black;
   padding-right: 1px;
 }
-.cell.cell-left {
+.sudoku .cell.cell-left {
   border-left: 1px solid black;
   padding-left: 1px;
 }
-.cell__field-value {
+.sudoku .cell__field-value {
   font-size: 2rem;
   height: 100%;
   text-align: center;
 }
-.cell__field-guess {
+.sudoku .cell__field-guess {
   bottom: 100%;
   display: grid;
   font-size: 8px;
@@ -62,44 +62,44 @@
   width: 100%;
   z-index: 1;
 }
-.cell.cell-current {
+.sudoku .cell.cell-current {
   background-color: lightgray;
 }
-.cell.cell-selectable {
+.sudoku .cell.cell-selectable {
   cursor: pointer;
 }
-.cell.cell-current-number,
-.cell.cell-current-number.cell.cell-selected {
+.sudoku .cell.cell-current-number,
+.sudoku .cell.cell-current-number.cell.cell-selected {
   color: blue;
   background-color: cornsilk;
 }
-.cell.cell-selected {
+.sudoku .cell.cell-selected {
   color: darkcyan;
   background-color: lightcyan;
 }
-.cell.cell-error-state {
+.sudoku .cell.cell-error-state {
   background-color: pink;
 }
 
 /* Header */
-.control-panel__header {
+.sudoku .control-panel__header {
   font-size: 1em;
   padding-top: 6px;
   position: relative;
 }
-.control-panel__icon {
+.sudoku .control-panel__icon {
   left: 6px;
   top: 2px;
   position: absolute;
   zoom: 2;
 }
-.control-panel__title {
+.sudoku .control-panel__title {
   text-align: center;
   font-size: 1.5rem;
 }
 
 /* Control Panel Styles */
-.control-panel {
+.sudoku .control-panel {
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -108,14 +108,14 @@
   max-width: 360px;
   margin: 0;
 }
-.control-panel__time,
-.control-panel__difficulty,
-.control-panel__errors {
+.sudoku .control-panel__time,
+.sudoku .control-panel__difficulty,
+.sudoku .control-panel__errors {
   color: #00000094;
   font-size: 0.75rem;
 }
 
-.control-panel__pencil {
+.sudoku .control-panel__pencil {
   align-items: center;
   border-radius: 100%;
   color: gray;
@@ -126,13 +126,13 @@
   justify-content: center;
   width: 48px;
 }
-.control-panel__pencil.edit-mode {
+.sudoku .control-panel__pencil.edit-mode {
   background-color: darkgray;
   color: white;
 }
 
 /* Number Pad components */
-.numpad-component {
+.sudoku .numpad-component {
   display: grid;
   grid-auto-rows: minmax(auto, 39px);
   grid-template-columns: repeat(5, 1fr);
@@ -141,7 +141,7 @@
   max-width: 360px;
   padding: 12px;
 }
-.numpad-num {
+.sudoku .numpad-num {
   align-items: center;
   border-radius: 4px;
   display: flex;
@@ -150,21 +150,21 @@
   justify-content: center;
   text-align: center;
 }
-.numpad-num:hover {
+.sudoku .numpad-num:hover {
   background-color: lightgray;
 }
-.numpad-num.current-num {
+.sudoku .numpad-num.current-num {
   background-color: gray;
   color: white;
 }
-.numpad-num.numpad-num__complete {
+.sudoku .numpad-num.numpad-num__complete {
   background: white;
   color: white;
   pointer-events: none;
 }
 
 /* Menu Slide out Styles */
-.menu {
+/* .menu {
   background: transparent;
   height: 100vh;
   left: -100vw;
@@ -196,4 +196,4 @@
 }
 .menu-option__selected {
   background-color: lightgray;
-}
+} */
