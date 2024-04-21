@@ -1,6 +1,8 @@
 import React from "react";
 import cn from "classnames";
 
+import { DifficultyLevel } from "../sudoku/components/DifficultyLevel";
+
 import "./app.css";
 
 interface MenuInterface {
@@ -47,6 +49,7 @@ export const Menu = ({ currentGame, setCurrentGame }: MenuInterface) => {
           >
             Sudoku
           </li>
+          {currentGame === "sudoku" && <DifficultyLevel />}
         </ul>
       </div>
     </div>

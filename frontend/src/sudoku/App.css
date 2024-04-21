@@ -1,9 +1,3 @@
-/* * {
-  box-sizing: border-box;
-  user-select: none;
-  z-index: 2;
-} */
-
 #root.sudoku {
   display: flex;
   flex-direction: column;
@@ -163,37 +157,11 @@
   pointer-events: none;
 }
 
-/* Menu Slide out Styles */
-/* .menu {
-  background: transparent;
-  height: 100vh;
-  left: -100vw;
-  position: fixed;
-  top: 0px;
-  transition: left 1s ease, background 2s ease;
-  width: 100vw;
+.sudoku #menu {
   z-index: 3;
+
+  ol li {
+    height: 30px;
+    list-style-type: circle;
+  }
 }
-.menu.open {
-  background: rgb(211 211 211 / 79%);
-  left: 0;
-}
-.menu-content {
-  background-color: white;
-  border-right: solid 1px black;
-  display: flex;
-  height: 100vh;
-  flex-direction: column;
-  width: 300px;
-  padding: 20px;
-  font-size: 1.2em;
-}
-.menu-option {
-  padding: 4px 12px;
-  border-radius: 8px;
-  margin: 12px 0;
-  border-color: solid 1px black;
-}
-.menu-option__selected {
-  background-color: lightgray;
-} */

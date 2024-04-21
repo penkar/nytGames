@@ -1,6 +1,6 @@
 import React from "react";
 import cn from "classnames";
-import { useBoard } from "../contexts/useBoard";
+import { useBoard } from "../../context/useBoard";
 
 export const ControlPanel = () => {
   const [len, setLen] = React.useState(0);

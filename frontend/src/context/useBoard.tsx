@@ -1,7 +1,7 @@
 import React from "react";
 
-import { createBoard } from "../utilities/sudokuBoardCreate";
-import { compareCells } from "../utilities/sudokuBoardChecks";
+import { createBoard } from "../sudoku/utilities/sudokuBoardCreate";
+import { compareCells } from "../sudoku/utilities/sudokuBoardChecks";
 
 export type PrivateBoard = {
   currentCell?: number;
@@ -263,6 +263,8 @@ function BoardProvider({ children }: ProviderLayer) {
       })
     ),
   };
+
+  console.log(267, exposedState.board);
 
   return (
     <BoardContext.Provider value={exposedState}>

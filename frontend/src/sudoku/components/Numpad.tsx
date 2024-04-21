@@ -1,6 +1,6 @@
 import React from "react";
 import { Num } from "./Num";
-import { useBoard } from "../contexts/useBoard";
+import { useBoard } from "../../context/useBoard";
 
 export const Numpad = () => {
   const { actions, board, currentNumber } = useBoard();

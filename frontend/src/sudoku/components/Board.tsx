@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Cell } from "./Cell";
-import { useBoard } from "../contexts/useBoard";
+import { useBoard } from "../../context/useBoard";
 
 export const Board = () => {
   const { actions, board, currentCell, currentNumber, currentState, editMode } =
@@ -24,7 +24,7 @@ export const Board = () => {
           guessSet={guessSet}
           hidden={hidden}
           index={index}
-          key={index}
+          key={`${index}-${fieldValue}`}
           {...props}
         />
       ))}

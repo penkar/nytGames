@@ -1,5 +1,5 @@
 import React from "react";
-import { useBoard } from "../contexts/useBoard";
+import { useBoard } from "../../context/useBoard";
 
 export const Header = () => {
   const { actions } = useBoard();
@@ -13,7 +13,7 @@ export const Header = () => {
       body.className = "stand-alone";
     } else {
       body.className = "web-app";
-    } 
+    }
   }, [standAlone]);
 
   return (

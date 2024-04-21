@@ -1,5 +1,5 @@
 import type { Board } from "../types";
-import type { PrivateBoard } from "../contexts/useBoard";
+import type { PrivateBoard } from "../../context/useBoard";
 
 export const checkRows = (gameBoard: Board): boolean => {
   let validBoard = true;
