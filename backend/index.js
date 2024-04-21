@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 
+import { getRandomWord, checkRandomWord } from "./sampleWords.js";
+
 import {
   binarySearchWordList,
   composePossibleLetters,
@@ -36,4 +38,14 @@ app.get("/spellingbee_meta", (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
+});
+
+app.get("/wordleGuess", (req, res) => {
+  res.send({ wordleSecret: getRandomWord() });
+});
+
+app.post("/wordleGuess", (req, res) => {
+  const guess = req.body.guess;
+
+  res.send({ match: checkRandomWord(guess) });
 });

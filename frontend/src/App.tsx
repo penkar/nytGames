@@ -1,6 +1,7 @@
 import React from "react";
 import SpellingBee from "./spellingbee";
 import Wordle from "./wordle";
+import Sudoku from "./sudoku";
 import { Menu } from "./utilities";
 import {
   GuessContextProvider,
@@ -20,6 +21,7 @@ const App = () => {
           <StatsContextProvider>
             {currentGame === "spelling_bee" && <SpellingBee />}
             {currentGame === "wordle" && <Wordle />}
+            {currentGame === "sudoku" && <Sudoku />}
             <Menu currentGame={currentGame} setCurrentGame={setCurrentGame} />
           </StatsContextProvider>
         </SpellingBeeContext>

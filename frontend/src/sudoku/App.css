@@ -1,0 +1,199 @@
+* {
+  box-sizing: border-box;
+  user-select: none;
+  z-index: 2;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-around;
+  margin: auto;
+  width: 360px;
+}
+
+/* Game Board Styles */
+.board-component {
+  display: grid;
+  grid-auto-rows: minmax(auto, 39px);
+  grid-template-columns: repeat(9, 1fr);
+  margin: 0;
+  max-width: 360px;
+  padding: 12px;
+}
+
+/* Cell Styles */
+.cell {
+  border: 1px solid hwb(0deg 0% 100% / 15%);
+  position: relative;
+}
+.cell.cell-top {
+  border-top: 1px solid black;
+  padding-top: 1px;
+}
+.cell.cell-bottom {
+  border-bottom: 1px solid black;
+  padding-bottom: 1px;
+}
+.cell.cell-right {
+  border-right: 1px solid black;
+  padding-right: 1px;
+}
+.cell.cell-left {
+  border-left: 1px solid black;
+  padding-left: 1px;
+}
+.cell__field-value {
+  font-size: 2rem;
+  height: 100%;
+  text-align: center;
+}
+.cell__field-guess {
+  bottom: 100%;
+  display: grid;
+  font-size: 8px;
+  grid-auto-rows: minmax(auto, 12px);
+  grid-template-columns: repeat(3, 1fr);
+  height: 100%;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+.cell.cell-current {
+  background-color: lightgray;
+}
+.cell.cell-selectable {
+  cursor: pointer;
+}
+.cell.cell-current-number,
+.cell.cell-current-number.cell.cell-selected {
+  color: blue;
+  background-color: cornsilk;
+}
+.cell.cell-selected {
+  color: darkcyan;
+  background-color: lightcyan;
+}
+.cell.cell-error-state {
+  background-color: pink;
+}
+
+/* Header */
+.control-panel__header {
+  font-size: 1em;
+  padding-top: 6px;
+  position: relative;
+}
+.control-panel__icon {
+  left: 6px;
+  top: 2px;
+  position: absolute;
+  zoom: 2;
+}
+.control-panel__title {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+/* Control Panel Styles */
+.control-panel {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: 45px;
+  justify-content: space-evenly;
+  max-width: 360px;
+  margin: 0;
+}
+.control-panel__time,
+.control-panel__difficulty,
+.control-panel__errors {
+  color: #00000094;
+  font-size: 0.75rem;
+}
+
+.control-panel__pencil {
+  align-items: center;
+  border-radius: 100%;
+  color: gray;
+  cursor: pointer;
+  display: flex;
+  font-size: 2em;
+  height: 48px;
+  justify-content: center;
+  width: 48px;
+}
+.control-panel__pencil.edit-mode {
+  background-color: darkgray;
+  color: white;
+}
+
+/* Number Pad components */
+.numpad-component {
+  display: grid;
+  grid-auto-rows: minmax(auto, 39px);
+  grid-template-columns: repeat(5, 1fr);
+  /* grid-template-columns: repeat(3, 1fr); */
+  margin: 0;
+  max-width: 360px;
+  padding: 12px;
+}
+.numpad-num {
+  align-items: center;
+  border-radius: 4px;
+  display: flex;
+  font-size: 2em;
+  height: 60px;
+  justify-content: center;
+  text-align: center;
+}
+.numpad-num:hover {
+  background-color: lightgray;
+}
+.numpad-num.current-num {
+  background-color: gray;
+  color: white;
+}
+.numpad-num.numpad-num__complete {
+  background: white;
+  color: white;
+  pointer-events: none;
+}
+
+/* Menu Slide out Styles */
+.menu {
+  background: transparent;
+  height: 100vh;
+  left: -100vw;
+  position: fixed;
+  top: 0px;
+  transition: left 1s ease, background 2s ease;
+  width: 100vw;
+  z-index: 3;
+}
+.menu.open {
+  background: rgb(211 211 211 / 79%);
+  left: 0;
+}
+.menu-content {
+  background-color: white;
+  border-right: solid 1px black;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  width: 300px;
+  padding: 20px;
+  font-size: 1.2em;
+}
+.menu-option {
+  padding: 4px 12px;
+  border-radius: 8px;
+  margin: 12px 0;
+  border-color: solid 1px black;
+}
+.menu-option__selected {
+  background-color: lightgray;
+}
