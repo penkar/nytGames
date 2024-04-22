@@ -60,8 +60,8 @@
   text-align: center;
 }
 
-/* Body Section */
-.spelling_bee section {
+/* Body */
+.spelling_bee main {
   bottom: 120px;
   display: flex;
   flex-direction: column-reverse;
@@ -70,7 +70,7 @@
   right: 0;
 }
 
-.spelling_bee section.body .hexagon {
+.spelling_bee main.body .hexagon {
   align-items: center;
   background: var(--light-gray);
   display: flex;
@@ -91,21 +91,21 @@
   );
 }
 
-.spelling_bee section.body .hexagon.central {
+.spelling_bee main.body .hexagon.central {
   background-color: var(--gold);
 }
 
-.spelling_bee section.body .row {
+.spelling_bee main.body .row {
   text-align: center;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.spelling_bee section.body .row + .row {
+.spelling_bee main.body .row + .row {
   margin-bottom: -20px;
 }
-.spelling_bee section.body .guess {
+.spelling_bee main.body .guess {
   font-size: 2em;
   height: 1.25em;
   letter-spacing: 0.5px;
@@ -117,7 +117,7 @@
   text-transform: uppercase;
 }
 
-.spelling_bee section.body .guess-list {
+.spelling_bee main.body .guess-list {
   height: calc(100vh - 420px - 156px - 20px);
   margin: 0px 28px;
   width: calc(100vw - 56px);

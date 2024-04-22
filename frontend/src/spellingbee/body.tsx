@@ -40,7 +40,7 @@ export const Body = () => {
   }, []);
 
   return (
-    <section className="body">
+    <main className="body">
       <div className="row">
         <LetterTile letter={letters[0]} onClick={addLetter} />
         <LetterTile letter={letters[1]} onClick={addLetter} />
@@ -60,6 +60,6 @@ export const Body = () => {
       <div className="guess-list">
         <span>Guesses:&nbsp;</span> {guessedWords.join(", ")}
       </div>
-    </section>
+    </main>
   );
 };
