@@ -1,5 +1,24 @@
 import React from "react";
+import styled from "styled-components";
 import { useBoard } from "../../context/useBoard";
+
+const PanelHeader = styled.div`
+  font-size: 1em;
+  padding-top: 6px;
+  position: relative;
+`;
+
+const Icon = styled.div`
+  left: 6px;
+  top: 2px;
+  position: absolute;
+  zoom: 2;
+`;
+
+const Title = styled.div`
+  text-align: center;
+  font-size: 1.5rem;
+`;
 
 export const Header = () => {
   const { actions } = useBoard();
@@ -17,11 +36,9 @@ export const Header = () => {
   }, [standAlone]);
 
   return (
-    <div className="control-panel__header">
-      <div className="control-panel__icon" onClick={clickMenu}>
-        &#9776;
-      </div>
-      <div className="control-panel__title">Sudoku</div>
-    </div>
+    <PanelHeader>
+      <Icon onClick={clickMenu}>&#9776;</Icon>
+      <Title>Sudoku</Title>
+    </PanelHeader>
   );
 };

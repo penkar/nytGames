@@ -1,5 +1,67 @@
 import React from "react";
 import cn from "classnames";
+import styled from "styled-components";
+
+const FieldValue = styled.div`
+  font-size: 2rem;
+  height: 100%;
+  text-align: center;
+`;
+
+const FieldGuess = styled.div`
+  bottom: 100%;
+  display: grid;
+  font-size: 8px;
+  grid-auto-rows: minmax(auto, 12px);
+  grid-template-columns: repeat(3, 1fr);
+  height: 100%;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+`;
+
+const StyledCell = styled.div`
+  border: 1px solid hwb(0deg 0% 100% / 15%);
+  position: relative;
+
+  &.cell-top {
+    border-top: 1px solid black;
+    padding-top: 1px;
+  }
+  &.cell-bottom {
+    border-bottom: 1px solid black;
+    padding-bottom: 1px;
+  }
+  &.cell-right {
+    border-right: 1px solid black;
+    padding-right: 1px;
+  }
+  &.cell-left {
+    border-left: 1px solid black;
+    padding-left: 1px;
+  }
+
+  &.cell-current {
+    background-color: lightgray;
+  }
+  &.cell-selectable {
+    cursor: pointer;
+  }
+  &.cell-current-number,
+  &.cell-current-number.cell.cell-selected {
+    color: blue;
+    background-color: cornsilk;
+  }
+  &.cell-selected {
+    color: darkcyan;
+    background-color: lightcyan;
+  }
+  &.cell-error-state {
+    background-color: pink;
+  }
+`;
 
 interface Props {
   currentCell: boolean;
@@ -42,7 +104,7 @@ export const Cell = ({
   selectNumberCell,
 }: Props) => {
   const correctGuess = hidden && Boolean(fieldValue);
-  const className = cn("cell", {
+  const className = cn({
     "cell-right": BORDER_RIGHT.includes(index),
     "cell-bottom": BORDER_BOTTOM.includes(index),
     "cell-left": BORDER_LEFT.includes(index),
@@ -62,12 +124,10 @@ export const Cell = ({
   };
 
   return (
-    <div className={className} onClick={clickEvent}>
-      <div className="cell__field-value">
-        {fieldValue !== 0 ? fieldValue : ""}
-      </div>
+    <StyledCell className={className} onClick={clickEvent}>
+      <FieldValue>{fieldValue !== 0 ? fieldValue : ""}</FieldValue>
       {fieldValue === 0 && (
-        <div className="cell__field-guess">
+        <FieldGuess>
           <div>{guessSet.has(1) ? 1 : null}</div>
           <div>{guessSet.has(2) ? 2 : null}</div>
           <div>{guessSet.has(3) ? 3 : null}</div>
@@ -77,8 +137,8 @@ export const Cell = ({
           <div>{guessSet.has(7) ? 7 : null}</div>
           <div>{guessSet.has(8) ? 8 : null}</div>
           <div>{guessSet.has(9) ? 9 : null}</div>
-        </div>
+        </FieldGuess>
       )}
-    </div>
+    </StyledCell>
   );
 };

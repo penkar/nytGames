@@ -1,7 +1,17 @@
 import React from "react";
+import styled from "styled-components";
 
 import { Cell } from "./Cell";
 import { useBoard } from "../../context/useBoard";
+
+const BoardElement = styled.div`
+  display: grid;
+  grid-auto-rows: minmax(auto, 39px);
+  grid-template-columns: repeat(9, 1fr);
+  margin: 0;
+  max-width: 360px;
+  padding: 12px;
+`;
 
 export const Board = () => {
   const { actions, board, currentCell, currentNumber, currentState, editMode } =
@@ -14,7 +24,7 @@ export const Board = () => {
   };
 
   return (
-    <div className="board-component">
+    <BoardElement>
       {board.map(({ fieldValue, guess, guessSet, hidden }, index) => (
         <Cell
           currentCell={currentCell === index}
@@ -28,6 +38,6 @@ export const Board = () => {
           {...props}
         />
       ))}
-    </div>
+    </BoardElement>
   );
 };

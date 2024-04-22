@@ -5,7 +5,7 @@
   height: 100vh;
 }
 
-.wordle .application {
+/* .wordle .application {
   background-color: white;
   display: flex;
   font-family: sans-serif;
@@ -14,7 +14,7 @@
   justify-content: space-between;
   user-select: none;
   width: 100%;
-}
+} */
 
 .wordle .statistics__backdrop,
 .wordle .statistics__open {

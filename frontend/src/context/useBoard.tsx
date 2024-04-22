@@ -264,8 +264,6 @@ function BoardProvider({ children }: ProviderLayer) {
     ),
   };
 
-  console.log(267, exposedState.board);
-
   return (
     <BoardContext.Provider value={exposedState}>
       {children}
