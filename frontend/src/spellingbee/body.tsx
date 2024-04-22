@@ -1,21 +1,45 @@
 import React from "react";
-import cn from "classnames";
+import styled from "styled-components";
 import { useSpellingBeeContext } from "../context";
 
-interface LetterTileInterface {
-  central?: boolean;
-  letter: string;
-  onClick: (arg: string) => void;
-}
+import { Hexagon } from "./hexagon";
 
-const LetterTile = ({ central, letter = "", onClick }: LetterTileInterface) => {
-  const handleClick = () => onClick(letter);
-  return (
-    <div className={cn("hexagon", { central })} onClick={handleClick}>
-      {letter}
-    </div>
-  );
-};
+const Main = styled.main`
+  bottom: 120px;
+  display: flex;
+  flex-direction: column-reverse;
+  left: 0;
+  position: fixed;
+  right: 0;
+`;
+
+const Row = styled.div`
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  & + & {
+    margin-bottom: -20px;
+  }
+`;
+
+const GuessList = styled.div`
+  height: calc(100vh - 420px - 156px - 20px);
+  margin: 0px 28px;
+  width: calc(100vw - 56px);
+`;
+
+const Guess = styled.div`
+  font-size: 2em;
+  height: 1.25em;
+  letter-spacing: 0.5px;
+  line-height: 1.25;
+  margin: auto;
+  padding: 24px 8px;
+  text-align: center;
+  text-rendering: optimizeLegibility;
+  text-transform: uppercase;
+`;
 
 export const Body = () => {
   const {
@@ -40,26 +64,24 @@ export const Body = () => {
   }, []);
 
   return (
-    <main className="body">
-      <div className="row">
-        <LetterTile letter={letters[0]} onClick={addLetter} />
-        <LetterTile letter={letters[1]} onClick={addLetter} />
-      </div>
-      <div className="row">
-        <LetterTile letter={letters[2]} onClick={addLetter} />
-        <LetterTile letter={centralLetter} onClick={addLetter} central />
-        <LetterTile letter={letters[3]} onClick={addLetter} />
-      </div>
-      <div className="row">
-        <LetterTile letter={letters[4]} onClick={addLetter} />
-        <LetterTile letter={letters[5]} onClick={addLetter} />
-      </div>
-      <div className="guess" style={{ fontSize }}>
-        {currentGuess}
-      </div>
-      <div className="guess-list">
+    <Main>
+      <Row>
+        <Hexagon letter={letters[0]} onClick={addLetter} />
+        <Hexagon letter={letters[1]} onClick={addLetter} />
+      </Row>
+      <Row>
+        <Hexagon letter={letters[2]} onClick={addLetter} />
+        <Hexagon letter={centralLetter} onClick={addLetter} central />
+        <Hexagon letter={letters[3]} onClick={addLetter} />
+      </Row>
+      <Row>
+        <Hexagon letter={letters[4]} onClick={addLetter} />
+        <Hexagon letter={letters[5]} onClick={addLetter} />
+      </Row>
+      <Guess style={{ fontSize }}>{currentGuess}</Guess>
+      <GuessList>
         <span>Guesses:&nbsp;</span> {guessedWords.join(", ")}
-      </div>
-    </main>
+      </GuessList>
+    </Main>
   );
 };
