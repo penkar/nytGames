@@ -2,10 +2,30 @@ import React from "react";
 import cn from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components";
 
 import { Guess } from "../Guesses/guess";
 
 import { useModal } from "../../context/useWordleModal";
+
+const Wrapper = styled.div`
+  max-width: 400px;
+`;
+
+const Title = styled.div`
+  display: flex;
+  font-size: 20px;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+`;
+
+const Line = styled.div`
+  padding: 4px 0;
+  > div {
+    justify-content: start;
+  }
+`;
 
 const HowToPlay = React.memo(() => {
   const [loading, setLoading] = React.useState(true);
@@ -44,54 +64,54 @@ const HowToPlay = React.memo(() => {
         how_to_play__loading: loading,
       })}
     >
-      <div className="how_to_play__contentWrapper">
-        <div className="how_to_play__title">
+      <Wrapper>
+        <Title>
           <span>how to play</span>
           <FontAwesomeIcon
             className="how_to_play__closeIcon"
             icon={faClose}
             onClick={exitModal}
           />
-        </div>
+        </Title>
         <div>
-          <div className="how_to_play__line">
+          <Line>
             Guess the <span className="how_to_play__strong">GenOrdle</span> in
             six tries.
-          </div>
-          <div className="how_to_play__line">
+          </Line>
+          <Line>
             Each guess must be a 5-8 character set of words. Hit the enter
             button to submit.
-          </div>
-          <div className="how_to_play__line">
+          </Line>
+          <Line>
             After each guess, the color of the tiles will change to show how
             close your guess was to the word.
-          </div>
+          </Line>
           <hr />
-          <div className="how_to_play__strongLine">Examples</div>
-          <div className="how_to_play__line">
+          <Line className="how_to_play__strongLine">Examples</Line>
+          <Line>
             The letter <span className="how_to_play__strong">T</span> is in the
             word and in the correct spot.
-          </div>
-          <div className="how_to_play__line">
+          </Line>
+          <Line>
             <Guess length={4} previous guess={guess1} />
-          </div>
-          <div className="how_to_play__line">
+          </Line>
+          <Line>
             The letter <span className="how_to_play__strong">O</span> is in the
             word but in the wrong spot.
-          </div>
-          <div className="how_to_play__line">
+          </Line>
+          <Line>
             <Guess length={4} previous guess={guess2} />
-          </div>
-          <div className="how_to_play__line">
+          </Line>
+          <Line>
             The letter <span className="how_to_play__strong">S</span> is not in
             the word in any spot.
-          </div>
-          <div className="how_to_play__line">
+          </Line>
+          <Line>
             <Guess length={4} previous guess={guess3} />
-          </div>
+          </Line>
           <hr />
         </div>
-      </div>
+      </Wrapper>
     </div>
   );
 });

@@ -6,8 +6,38 @@ import {
   faGear,
   faQuestion,
 } from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components";
 
 import { useModal } from "../../context/useWordleModal";
+
+const HeaderWrapper = styled.div`
+  align-items: center;
+  border-bottom: 1px solid black;
+  color: black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: 50px;
+  justify-content: space-between;
+  padding: 0 16px;
+`;
+
+const HeaderRow = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const HeaderTitle = styled.div`
+  font-family: sans-serif;
+  font-size: 2.25rem;
+  font-weight: 700;
+  left: 0;
+  letter-spacing: 1px;
+  line-height: 100%;
+  pointer-events: none;
+  right: 0;
+  text-align: center;
+`;
 
 interface HeaderInterface {
   title?: string;
@@ -17,8 +47,8 @@ const Header = React.memo(({ title = "GenOrdle" }: HeaderInterface) => {
   const { setCurrentModal } = useModal();
 
   return (
-    <div className="header__header">
-      <div className="header__row">
+    <HeaderWrapper>
+      <HeaderRow>
         <FontAwesomeIcon
           className="header__icon"
           icon={faBars}
@@ -31,9 +61,9 @@ const Header = React.memo(({ title = "GenOrdle" }: HeaderInterface) => {
           onClick={() => setCurrentModal(2)}
           size="2x"
         />
-      </div>
-      <div className="header__title">{title}</div>
-      <div className="header__row">
+      </HeaderRow>
+      <HeaderTitle>{title}</HeaderTitle>
+      <HeaderRow>
         <FontAwesomeIcon
           className="header__icon"
           icon={faChartColumn}
@@ -46,8 +76,8 @@ const Header = React.memo(({ title = "GenOrdle" }: HeaderInterface) => {
           onClick={() => setCurrentModal(4)}
           size="2x"
         />
-      </div>
-    </div>
+      </HeaderRow>
+    </HeaderWrapper>
   );
 });
 

@@ -1,34 +1,56 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components";
 
 import { useGuess } from "../../context/useWordleGuess";
 import { useModal } from "../../context/useWordleModal";
 import { useStats } from "../../context/useWordleStats";
+import { Bar } from "./bar";
 
-interface BarInterface {
-  completion: number;
-  count: number;
-  num: number;
-  total: number;
-}
+const StyledBarchart = styled.div`
+  padding: 0 60px;
+`;
 
-const Bar = ({ completion, count, num, total }: BarInterface) => {
-  const percent = Math.max(10, (count * 100) / total);
-  const color = num === completion ? "#6aaa64" : "gray";
-  const styleAttr = {
-    background: `linear-gradient(to right, ${color} ${percent}%, transparent ${percent}%)`,
-  };
+const StatsBlock = styled.div`
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 10px;
 
-  return (
-    <div className="statistics__bar">
-      <div className="statistics__barNum">{num}</div>
-      <div className="statistics__barCount" style={styleAttr}>
-        {count}
-      </div>
-    </div>
-  );
-};
+  > div {
+    padding-bottom: 12px;
+  }
+`;
+
+const Title = styled.div`
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+`;
+
+const Modal = styled.div`
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 23px 0 rgb(0 0 0 / 20%);
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 24px;
+  padding: 16px;
+  position: relative;
+  width: 450px;
+`;
+
+const Secret = styled.div`
+  color: mediumblue;
+  font-size: 1rem;
+  text-transform: uppercase;
+  &:before {
+    content: "Answer: ";
+  }
+`;
 
 export default function Statistics() {
   const { completion, secret } = useGuess();
@@ -51,14 +73,14 @@ export default function Statistics() {
       }
       onClick={exitModal}
     >
-      <div className="statistics__modal">
+      <Modal>
         <FontAwesomeIcon
           className="statistics__closeIcon"
           icon={faClose}
           onClick={exitModal}
         />
-        <div className="statistics__statsBlock">
-          <div className="statistics__title">statistics</div>
+        <StatsBlock>
+          <Title>statistics</Title>
           <div className="statistics__stats">
             <div className="statistics__stat">
               <div>{currentStats.total}</div>
@@ -77,10 +99,10 @@ export default function Statistics() {
               <div>max strek</div>
             </div>
           </div>
-          {secret && <div className="statistics__secret">{secret}</div>}
-          <div className="statistics__title">gross distribution</div>
-        </div>
-        <div className="statistics__barChart">
+          {secret && <Secret>{secret}</Secret>}
+          <Title>gross distribution</Title>
+        </StatsBlock>
+        <StyledBarchart>
           <Bar
             completion={completion}
             count={currentStats.guessCount[1]}
@@ -117,8 +139,8 @@ export default function Statistics() {
             num={6}
             total={total}
           />
-        </div>
-      </div>
+        </StyledBarchart>
+      </Modal>
     </div>
   );
 }
