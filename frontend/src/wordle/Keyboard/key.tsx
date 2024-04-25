@@ -5,7 +5,10 @@ import styled from "styled-components";
 import { useGuess } from "../../context/useWordleGuess";
 
 interface KeyInterface {
-  letter: string;
+  children?: React.ReactNode;
+  letter?: string;
+  newClass?: string;
+  onClick?: () => void;
 }
 
 const KeyElement = styled.button`
@@ -21,28 +24,32 @@ const KeyElement = styled.button`
   max-width: 55px;
   text-align: center;
   width: 16px;
-
-  &.enter {
-    min-width: 64px;
-  }
   &.delete {
-    min-width: 45px;
+    min-width: 45;
+  }
+  &.enter {
+    64px;
   }
 `;
 
-export default function Key({ letter }: KeyInterface) {
+export default function Key({
+  children,
+  letter = "",
+  newClass = "",
+  onClick,
+}: KeyInterface) {
   const { addLetterToGuess, hintCharacters, matchCharacters, spentCharacters } =
     useGuess();
   const addLetter = () => addLetterToGuess(letter);
-  const className = cn({
-    "key__match-character": matchCharacters.has(letter),
+  const className = cn(newClass, {
     "key__hint-character": hintCharacters.has(letter),
+    "key__match-character": matchCharacters.has(letter),
     "key__spent-character": spentCharacters.has(letter),
   });
 
   return (
-    <KeyElement className={className} onClick={addLetter}>
-      {letter}
+    <KeyElement className={className} onClick={onClick || addLetter}>
+      {letter || children}
     </KeyElement>
   );
 }

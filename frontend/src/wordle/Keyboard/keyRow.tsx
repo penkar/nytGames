@@ -27,17 +27,17 @@ export default function KeyRow({
   return (
     <KeyRowElement>
       {enterDel && (
-        <button className="key enter" onClick={attemptGuess}>
+        <Key newClass="enter" onClick={attemptGuess}>
           ENTER
-        </button>
+        </Key>
       )}
       {letters.split("").map((letter) => (
         <Key key={letter} letter={letter} />
       ))}
       {enterDel && (
-        <button className="key delete" onClick={removeLetter}>
+        <Key newClass="delete" onClick={removeLetter}>
           <FontAwesomeIcon icon={faDeleteLeft} />
-        </button>
+        </Key>
       )}
     </KeyRowElement>
   );
