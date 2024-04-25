@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDeleteLeft } from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components";
 
 import Key from "./key";
 import { useGuess } from "../../context/useWordleGuess";
@@ -10,6 +11,13 @@ interface KeyRowInterface {
   letters: string;
 }
 
+const KeyRowElement = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 2px;
+`;
+
 export default function KeyRow({
   enterDel = false,
   letters = "",
@@ -17,7 +25,7 @@ export default function KeyRow({
   const { attemptGuess, removeLetter } = useGuess();
 
   return (
-    <div className="key__row">
+    <KeyRowElement>
       {enterDel && (
         <button className="key enter" onClick={attemptGuess}>
           ENTER
@@ -31,6 +39,6 @@ export default function KeyRow({
           <FontAwesomeIcon icon={faDeleteLeft} />
         </button>
       )}
-    </div>
+    </KeyRowElement>
   );
 }

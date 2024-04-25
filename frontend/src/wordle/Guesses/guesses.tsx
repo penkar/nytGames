@@ -10,6 +10,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   flex: 1;
   justify-content: center;
+  margin-top: 60px;
 `;
 
 export default function Guesses() {

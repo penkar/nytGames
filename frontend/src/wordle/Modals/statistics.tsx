@@ -1,4 +1,5 @@
 import React from "react";
+import cn from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
@@ -52,6 +53,53 @@ const Secret = styled.div`
   }
 `;
 
+const Backdrpo = styled.div`
+  align-content: center;
+  align-items: center;
+  background-color: hsl(0deg 0% 100% / 66%);
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 10;
+`;
+
+const Stats = styled.div`
+  z-index: -1;
+`;
+
+const Stat = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+  &:first-child {
+    font-size: 36px;
+    align-items: center;
+    display: flex;
+    font-weight: 400;
+    justify-content: center;
+    text-align: center;
+  }
+
+  &:last-child {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 12px;
+    max-width: 60px;
+    text-align: center;
+    text-transform: capitalize;
+  }
+
+  & + & {
+    padding-left: 18px;
+  }
+`;
+
 export default function Statistics() {
   const { completion, secret } = useGuess();
   const { currentModal, exitModal, setCurrentModal } = useModal();
@@ -67,10 +115,10 @@ export default function Statistics() {
   }, [completion]);
 
   return (
-    <div
-      className={
-        currentModal === 3 ? "statistics__open" : "statistics__backdrop"
-      }
+    <Backdrpo
+      className={cn({
+        statistics__backdrop: currentModal !== 3,
+      })}
       onClick={exitModal}
     >
       <Modal>
@@ -81,24 +129,24 @@ export default function Statistics() {
         />
         <StatsBlock>
           <Title>statistics</Title>
-          <div className="statistics__stats">
-            <div className="statistics__stat">
+          <Stats>
+            <Stat>
               <div>{currentStats.total}</div>
               <div>played</div>
-            </div>
-            <div className="statistics__stat">
+            </Stat>
+            <Stat>
               <div>{Math.floor((100 * currentStats.wins) / total)}%</div>
               <div>win %</div>
-            </div>
-            <div className="statistics__stat">
+            </Stat>
+            <Stat>
               <div>{currentStats.current_streak}</div>
               <div>current streak</div>
-            </div>
-            <div className="statistics__stat">
+            </Stat>
+            <Stat>
               <div>{currentStats.longest_streak}</div>
               <div>max strek</div>
-            </div>
-          </div>
+            </Stat>
+          </Stats>
           {secret && <Secret>{secret}</Secret>}
           <Title>gross distribution</Title>
         </StatsBlock>
@@ -141,6 +189,6 @@ export default function Statistics() {
           />
         </StyledBarchart>
       </Modal>
-    </div>
+    </Backdrpo>
   );
 }

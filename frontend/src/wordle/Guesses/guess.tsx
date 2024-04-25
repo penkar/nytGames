@@ -1,4 +1,6 @@
 import React from "react";
+import styled from "styled-components";
+
 import Character from "./character";
 
 interface CurrentGuessInterface {
@@ -18,6 +20,12 @@ interface GuessesInterface {
   previous?: boolean;
 }
 
+const GuessElement = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
 export const Guess = ({
   length,
   guess = [],
@@ -28,11 +36,11 @@ export const Guess = ({
     currentGuess[i] = guess[i] || {};
   }
   return (
-    <div className="guess__guess">
+    <GuessElement>
       {currentGuess.map((character: GuessInterface, i: number) => (
         <Character key={i} {...character} previous={previous} />
       ))}
-    </div>
+    </GuessElement>
   );
 };
 
@@ -41,5 +49,5 @@ export const CurrentGuess = ({ guess, length }: CurrentGuessInterface) => {
   for (let i = 0; i < length; i++) {
     letters.push(<Character character={guess[i]} currentGuess key={i} />);
   }
-  return <div className="guess__guess current_guess">{letters}</div>;
+  return <GuessElement className="current_guess">{letters}</GuessElement>;
 };

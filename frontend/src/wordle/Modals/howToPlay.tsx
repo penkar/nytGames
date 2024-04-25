@@ -87,7 +87,7 @@ const HowToPlay = React.memo(() => {
             close your guess was to the word.
           </Line>
           <hr />
-          <Line className="how_to_play__strongLine">Examples</Line>
+          <Line className="how_to_play__strong">Examples</Line>
           <Line>
             The letter <span className="how_to_play__strong">T</span> is in the
             word and in the correct spot.

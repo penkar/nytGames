@@ -1,7 +1,13 @@
 import React from "react";
+import styled from "styled-components";
 
 import KeyRow from "./keyRow";
 import { useGuess } from "../../context/useWordleGuess";
+
+const KeyboardElement = styled.div`
+  padding: 2px;
+  text-transform: uppercase;
+`;
 
 export default function Keyboard() {
   const { addLetterToGuess, completion, removeLetter, attemptGuess } =
@@ -30,10 +36,10 @@ export default function Keyboard() {
   }, [keyDownEvent]);
 
   return (
-    <div className="keyboard">
+    <KeyboardElement>
       <KeyRow letters="qwertyuiop" />
       <KeyRow letters="asdfghjkl" />
       <KeyRow letters="zxcvbnm" enterDel />
-    </div>
+    </KeyboardElement>
   );
 }
