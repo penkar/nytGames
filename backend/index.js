@@ -10,7 +10,7 @@ import {
 } from "./utilities.js";
 
 const app = express();
-const port = 5000;
+const port = 5001;
 app.use(cors());
 
 app.get("/spellingbee/:guess", (req, res) => {
